@@ -19,7 +19,7 @@ import requests.utils
 
 # Variables
 WEB_BASE = 'https://api.datamarket.azure.com/Bing/Search/Web'
-QUERY_TEMPLATE = '?Query={}&Market={}&$skip={}&$format=json'
+QUERY_TEMPLATE = '?Query={}&Market={}&$top={}&$skip={}&$format=json'
 
 DEFAULT_MARKET = 'en-US'
 DEFAULT_SKIP = 0
@@ -45,11 +45,11 @@ def quote(text):
     return requests.utils.quote("'{}'".format(text))
 
 
-def get_url(query, market, skip=DEFAULT_SKIP):
+def get_url(query, market, top=RESULT_LIMIT, skip=DEFAULT_SKIP):
     '''Returns the URL to receive data from with the search query of *query*
     and the country as *market* in the page of *skip* / *RESULT_LIMIT* + 1.
     '''
-    return WEB_QUERY.format(quote(query), quote(market), skip)
+    return WEB_QUERY.format(quote(query), quote(market), top, skip)
 
 
 def get_objects(url, api_key):
@@ -68,15 +68,15 @@ def search(query, result_amount, api_key, market=DEFAULT_MARKET):
     '''
     search_results = []
 
-    search_url = get_url(query, market)
-    print(search_url)
-    wanted_result_amount = result_amount - len(search_results)
+    wanted_result_amount = min(RESULT_LIMIT, result_amount)
+    search_url = get_url(query, market, top=wanted_result_amount)
     search_results.extend(get_objects(search_url, api_key)
                           [: wanted_result_amount])
 
     for iteration in range(floor((result_amount - 1) / RESULT_LIMIT)):
         skip = RESULT_LIMIT * (iteration + 1)
-        search_url = get_url(query, market, skip=skip)
+        top = min(RESULT_LIMIT, result_amount - len(search_results))
+        search_url = get_url(query, market, top=top, skip=skip)
         print(search_url)
 
         search_objects = get_objects(search_url, api_key)

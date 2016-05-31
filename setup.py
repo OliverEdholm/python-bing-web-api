@@ -8,6 +8,7 @@ Oliver Edholm 2016-05-30 20:56
 '''
 # Imports
 from setuptools import setup
+from setuptools import find_packages
 from pip.req import parse_requirements
 
 
@@ -27,6 +28,12 @@ def get_required_packages():
 def setup_package():
     '''Setups the Bing web search API.'''
     setup(
+        name='bingsearch',
+        version='0.1',
+        description='Python Bing web API.',
+        author='Oliver Edholm',
+        author_email='oliver.edholm@gmail.com',
+        packages=find_packages(),
         install_requires=get_required_packages()
     )
 

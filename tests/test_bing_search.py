@@ -24,13 +24,13 @@ def teardown():
 def test_basic():
     '''Runs the test.'''
     search_term = 'Bill Gates'
-    result_amount = 100
-    api_key = 'API KEY HERE'
+    result_amount = 70
+    api_key = 'API KEY'
 
     results = search(search_term, result_amount, api_key)
     titles = [result.url for result in results]
     print('Result length:', len(results))
     print('Results head:', titles[:5])
     print('Results tail:', titles[len(titles) - 5:])
-    print('Results:', titles[:50])
+    print('Results 1:', titles[:50])
     print('Results 2:', titles[50:])

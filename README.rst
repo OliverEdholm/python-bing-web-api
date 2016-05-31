@@ -1,19 +1,12 @@
 ===========
-bing_search
+Bing web API in Python.
 ===========
 
 
-Add a short description here!
-
-
-Description
-===========
-
-A LONGER DESCRIPTION OF YOUR PROJECT GOES HERE...
+This Bing web API for python. It only works for v1 and you need to have an API key to use the API.
 
 
 Note
 ====
 
-This project has been set up using PyScaffold 2.5.6. For details and usage
-information on PyScaffold see http://pyscaffold.readthedocs.org/.
+You need a Bing web API key to be able to use this API. The API was created by Oliver Edholm, 13 years old.

@@ -1,23 +1,35 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-    Setup file for bing_search.
+'''Setup file for Bing web search API
 
-    This file was generated with PyScaffold 2.5.6, a tool that easily
-    puts up a scaffold for your new Python project. Learn more under:
-    http://pyscaffold.readthedocs.org/
-"""
+This is the module for setting up the Bing search API.
 
-import sys
+Oliver Edholm 2016-05-30 20:56
+'''
+# Imports
 from setuptools import setup
+from pip.req import parse_requirements
+
+
+# Functions
+def get_requirements_file():
+    '''Returns the packages in requirements.txt.'''
+    install_reqs = parse_requirements('requirements.txt', session=False)
+
+    return [str(ir.req) for ir in install_reqs]
+
+
+def get_required_packages():
+    '''Returns all the required packages.'''
+    return get_requirements_file()
 
 
 def setup_package():
-    needs_sphinx = {'build_sphinx', 'upload_docs'}.intersection(sys.argv)
-    sphinx = ['sphinx'] if needs_sphinx else []
-    setup(setup_requires=['six', 'pyscaffold>=2.5a0,<2.6a0'] + sphinx,
-          use_pyscaffold=True)
+    '''Setups the Bing web search API.'''
+    setup(
+        install_requires=get_required_packages()
+    )
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # If the user runs this file.
     setup_package()

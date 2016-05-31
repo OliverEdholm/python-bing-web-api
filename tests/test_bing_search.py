@@ -7,27 +7,29 @@ This is the main Bing search module. This file is meant to be run by nose.
 Oliver Edholm 2016-05-30 21:11
 '''
 # Imports
-from bing_search.web_search import search
+from bing_search.web_search import BingWebSearch
 
 
 # Functions
 def setup():
     '''Runs when tests start.'''
-    print("Setup!")
+    print('Setup!')
 
 
 def teardown():
     '''Runs when tests stops.'''
-    print("Tear down!")
+    print('Tear down!')
 
 
 def test_basic():
     '''Runs the test.'''
     search_term = 'Bill Gates'
     result_amount = 70
-    api_key = 'API KEY'
+    api_key = 'eggWly290AphkTKoiZt2TwCeqbF2EsH+3yyiGZIScnU'
 
-    results = search(search_term, result_amount, api_key)
+    bing_web = BingWebSearch(api_key)
+
+    results = bing_web.search(search_term, result_amount)
     titles = [result.url for result in results]
     print('Result length:', len(results))
     print('Results head:', titles[:5])

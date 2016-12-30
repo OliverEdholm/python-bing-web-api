@@ -11,5 +11,8 @@ Note
 
 You need a Bing web API key to be able to use this API. The API was created by Oliver Edholm, 13 years old.
 
-### Other
+
+Other
+====
+
 Made by Oliver Edholm, 14 years old.
